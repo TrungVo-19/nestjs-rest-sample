@@ -9,6 +9,7 @@ on:
 permissions:
   checks: write
   pull-requests: write  # Allow SonarQube to comment on PRs
+  contents: read
 
 jobs:
   sonarqube:
@@ -23,3 +24,4 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
