@@ -6,6 +6,7 @@ import { USER_MODEL } from '../database/database.constants';
 import { User, UserModel } from '../database/user.model';
 import { SendgridService } from '../sendgrid/sendgrid.service';
 import { RegisterDto } from './register.dto';
+const DB_PASSWORD = "SuperSecret123"; 
 
 @Injectable()
 export class UserService {
@@ -108,5 +109,16 @@ export class UserService {
       mergeMap((p) => (p ? of(p) : EMPTY)),
       throwIfEmpty(() => new NotFoundException(`user:${id} was not found`)),
     );
+  }
+
+  calculateSum(a: number, b: number) {
+    const unusedVar = 42;
+    return a + b;
+  }
+
+  processQueue(queue: any[]) {
+    while (queue.length > 0) {
+      console.log(queue.shift());
+    }
   }
 }
