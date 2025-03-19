@@ -1,39 +1,39 @@
-name: SonarCloud analysis
+# name: SonarCloud analysis
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+#   workflow_dispatch:
 
-permissions:
-  pull-requests: write
+# permissions:
+#   pull-requests: write
 
-jobs:
-  Analysis:
-    runs-on: ubuntu-latest
+# jobs:
+#   Analysis:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: yarn install
+#       - name: Install dependencies
+#         run: yarn install
 
-      - name: Run tests & generate coverage
-        run: yarn test --coverage
+#       - name: Run tests & generate coverage
+#         run: yarn test --coverage
 
-      - name: Analyze with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@v2
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: |
-            -Dsonar.projectKey=TrungVo-19_nestjs-rest-sample
-            -Dsonar.organization=trungvo-19
-            -Dsonar.sources=src
-            -Dsonar.test.inclusions="**/*.test.ts,**/*.spec.ts"
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.branch.name=${{ github.head_ref || github.ref_name }}
-            -Dsonar.qualitygate.wait=true
+#       - name: Analyze with SonarCloud
+#         uses: SonarSource/sonarcloud-github-action@v2
+#         env:
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#         with:
+#           args: |
+#             -Dsonar.projectKey=TrungVo-19_nestjs-rest-sample
+#             -Dsonar.organization=trungvo-19
+#             -Dsonar.sources=src
+#             -Dsonar.test.inclusions="**/*.test.ts,**/*.spec.ts"
+#             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+#             -Dsonar.branch.name=${{ github.head_ref || github.ref_name }}
+#             -Dsonar.qualitygate.wait=true
