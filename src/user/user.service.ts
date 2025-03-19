@@ -99,6 +99,7 @@ export class UserService {
         }
       }
     }
+    const myPwd = 'qqweer1'
     const userQuery = this.userModel.findOne({ _id: id });
     if (withPosts) {
       userQuery.populate('posts');
