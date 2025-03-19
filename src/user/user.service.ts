@@ -64,9 +64,10 @@ export class UserService {
 
   calculateSum(a: number, b: number) {
     const unusedVar = 42;
-    
+
     return a + b;
   }
+
 
   processQueue(queue: any[]) {
 
