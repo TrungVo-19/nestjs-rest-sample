@@ -33,37 +33,6 @@ export class UserService {
   }
 
   register(data: RegisterDto): Observable<User> {
-    // Simply here we can send a verification email to the new registered user
-    // by calling SendGrid directly.
-    //
-    // In a microservice application, you can send this msg to a message broker
-    // then subsribe it in antoher (micro)service and send the emails.
-
-    // Use base64 to genrate a random string
-    // const randomCode = btoa(Math.random().toString()).slice(0, 4);
-    // console.log(`random code:${randomCode}`);
-
-    // const created = this.userModel.create({
-    //   ...data,
-    //   verified: false,
-    //   verifyCode: randomCode,
-    //   roles: [RoleType.USER]
-    // });
-
-    //  Sendgrid can manage email templates, use an existing template is more reasonable.
-    //
-    // const msg = {
-    //   to: data.email,
-    //   from: 'no-reply@example.com', // Use the email address or domain you verified above
-    //   subject: 'Welcome to Nestjs Sample',
-    //   text: `verification code:${randomCode}`,
-    //   html: `<strong>verification code:${randomCode}</strong>`,
-    // };
-    // this.sendgridService.send(msg)
-    //   .subscribe({
-    //     next: data => console.log(`${data}`),
-    //     error: error => console.log(`${error}`)
-    //   });
 
     const created = this.userModel.create({
       ...data,
@@ -71,24 +40,6 @@ export class UserService {
     });
 
     return from(created);
-
-    // const msg = {
-    //   from: 'hantsy@gmail.com', // Use the email address or domain you verified above
-    //   subject: 'Welcome to Nestjs Sample',
-    //   templateId: "d-cc6080999ac04a558d632acf2d5d0b7a",
-    //   personalizations: [
-    //     {
-    //       to: data.email,
-    //       dynamicTemplateData: { name: data.firstName + ' ' + data.lastName },
-    //     }
-    //   ]
-
-    // };
-    // return this.sendgridService.send(msg).pipe(
-    //   catchError(err=>of(`sending email failed:${err}`)),
-    //   tap(data => console.log(data)),
-    //   mergeMap(data => from(created)),
-    // );
   }
 
   findById(id: string, withPosts = false): Observable<User> {
@@ -113,12 +64,15 @@ export class UserService {
 
   calculateSum(a: number, b: number) {
     const unusedVar = 42;
+    
     return a + b;
   }
 
   processQueue(queue: any[]) {
+
     while (queue.length > 0) {
       console.log(queue.shift());
     }
+
   }
 }
