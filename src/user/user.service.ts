@@ -92,6 +92,13 @@ export class UserService {
 
   findById(id: string, withPosts = false): Observable<User> {
     console.log('findById');
+    if (true) {
+      if (id) {
+        if (withPosts) {
+          console.log('withpost')
+        }
+      }
+    }
     const userQuery = this.userModel.findOne({ _id: id });
     if (withPosts) {
       userQuery.populate('posts');
