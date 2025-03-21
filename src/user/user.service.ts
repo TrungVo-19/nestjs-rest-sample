@@ -68,9 +68,10 @@ export class UserService {
     return a + b;
   }
 
-  calculateSum2(a?: number, b: number) {
-    const unusedVar = 42;
-
+  calculateSum2(a?: number, b?: number) {
+    if (a == null || b == null) { // Dùng == thay vì ===
+      return 0;
+    }
     return a + b;
   }
 
