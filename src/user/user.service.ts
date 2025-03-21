@@ -112,5 +112,9 @@ export class UserService {
     );
   }
 
+  add(a: any, b: any) {
+    return a + b + c
+  }
+
 
 }
