@@ -100,4 +100,21 @@ export class UserService {
       throwIfEmpty(() => new NotFoundException(`user:${id} was not found`)),
     );
   }
+
+  findById2(id: string, withPosts = false): Observable<User> {
+    const userQuery = this.userModel.findOne({ _id: id });
+    if (withPosts) {
+      userQuery.populate('posts');
+    }
+    return from(userQuery.exec()).pipe(
+      mergeMap((p) => (p ? of(p) : EMPTY)),
+      throwIfEmpty(() => new NotFoundException(`user:${id} was not found`)),
+    );
+  }
+
+  add(a: any, b: any) {
+    return a + b + c
+  }
+
+
 }
